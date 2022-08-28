@@ -8,7 +8,8 @@ let players = [
     marker: "O"
   },
 ]
-let cells = document.querySelectorAll(".row > div");
+let marker= target.querySelector("textContent").value
+let cells = document.querySelectorAll(".row > div")
 let possibleWins = [
   [cells[0], cells[1], cells[2]],
   [cells[3], cells[4], cells[5]],
@@ -18,35 +19,34 @@ let possibleWins = [
   [cells[2], cells[5], cells[8]],
   [cells[0], cells[4], cells[8]],
   [cells[2], cells[4], cells[6]]
-];
+]
 
-for (let turncount = 0; turncount < 10; turncount++) {
-  cells[i].addEventListener("click", cellsClicked(players, marker));
-  if (turncount % 2 === 0); {
-    cellsClicked(playerOne);
-    else if (turncount % 2 !=== 0); {
-      cellsClicked(playerTwo);
+for (let i = 0; i < cells.length; i++) {
+  cells[i].addEventListener("click", cellsClicked(players, marker))
+  if (turncount % 2 === 0) {
+    cellsClicked(playerOne)
+    else if (turncount % 2 !=== 0) {
+      cellsClicked(playerTwo)
   }
 }
-
 
 }
 for (let i = 0; i < cells.length; i++) {
-  cells[i].addEventListener("click", cellsClicked);
+  cells[i].addEventListener("click", cellsClicked)
   
-  for (let i = 0; i < cells.length; i++); {
+  for (let i = 0; i < cells.length; i++) {
 }
-function cellsClicked(playerOne) {
-  e.target.textContent = ("X");
+function cellsClicked(e) {
+  e.target.textContent = ("X")
   checkForWinner
   if (turncount < 10) {
-    document.querySelector(cellsClicked(playerOne));
+    document.querySelector(cellsClicked(playerOne))
   } else if {
-    document.querySelector(cellsClicked(playerTwo));
+    document.querySelector(cellsClicked(playerTwo))
   }
-  function checkForWinner(possibleWins, true); {
+  function checkForWinner(possibleWins, true) {
     if (possibleWins == true) {
-      alert("You Win!");
+      alert("You Win!")
     }
   }
 }
