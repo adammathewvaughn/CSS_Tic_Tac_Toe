@@ -7,11 +7,12 @@
 }
 
 h1 {
-
+  color: rgb(0, 217, 255);
   margin-bottom: 153px;
 }
 
 span {
+  color: rgb(189, 82, 82);
   margin-left: 15px;
   margin-right: 15px
 }

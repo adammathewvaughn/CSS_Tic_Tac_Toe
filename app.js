@@ -1,14 +1,6 @@
-let players = [
-  {
-    name: "playerOne",
-    marker: "X"
-  },
-  {
-    name: "playerTwo",
-    marker: "O"
-  },
-]
-let marker= target.querySelector("textContent").value
+let playerOne = "X"
+let playerTwo = "O"
+let turncount = 0;
 let cells = document.querySelectorAll(".row > div")
 let possibleWins = [
   [cells[0], cells[1], cells[2]],
@@ -19,53 +11,45 @@ let possibleWins = [
   [cells[2], cells[5], cells[8]],
   [cells[0], cells[4], cells[8]],
   [cells[2], cells[4], cells[6]]
-]
+];
 
-for (let i = 0; i < cells.length; i++) {
-  cells[i].addEventListener("click", cellsClicked(players, marker))
-  if (turncount % 2 === 0) {
-    cellsClicked(playerOne)
-    else if (turncount % 2 !=== 0) {
-      cellsClicked(playerTwo)
-  }
-}
 
-}
-for (let i = 0; i < cells.length; i++) {
-  cells[i].addEventListener("click", cellsClicked)
-  
-  for (let i = 0; i < cells.length; i++) {
-}
-function cellsClicked(e) {
-  e.target.textContent = ("X")
-  checkForWinner
-  if (turncount < 10) {
-    document.querySelector(cellsClicked(playerOne))
-  } else if {
-    document.querySelector(cellsClicked(playerTwo))
-  }
-  function checkForWinner(possibleWins, true) {
-    if (possibleWins == true) {
-      alert("You Win!")
+cells.forEach(function (cell) {
+  cell.addEventListener("click", cellClicked);
+  console.log("click");
+});
+
+function cellClicked(e) {
+  if (turncount < 9) {
+    if (turncount % 2 === 0) {
+      e.target.textContent = playerOne
+    } else {
+      e.target.textContent = playerTwo;
     }
+    if (cells.textContent !== "")
+      turncount++
+    console.log(turncount)
+    checkForWinner()
   }
 }
-
-//function getFee(isWinner) {
-  //return (isWinner) ? '$2.00' : '$10.00');
-//}
-
-
-
-
-/*cellsClicked(playerOne);
- cellsClicked(playerTwo);
- cells[0].textContent;
- cells[1].textContent;
- cells[2].textContent;
- cells[3].textContent;
- cells[4].textContent;
- cells[5].textContent;
- cells[6].textContent;
- cells[7].textContent;
- cells[8].textContent;*/
+function checkForWinner() {
+  for (let i = 0; i < possibleWins.length; i++) {
+  let combo = possibleWins[i];
+  let p1combocounter= 0;
+  let p2combocounter= 0;
+  for (let j = 0; j < combo.length; j++) {
+    if (combo[j] === playerOne) {
+      p1combocounter++;
+    }
+    if (combo[j] === playerTwo) {
+      p2combocounter++;
+    }
+  if (cells[combo[j]].textContent == playerOne ) {
+    alert("Player One Wins!")
+  }
+}
+if( turncount >8 ){
+  alert("It's A Tie!")
+}
+}
+}
