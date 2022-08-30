@@ -1,7 +1,10 @@
+let cells = document.querySelectorAll(".row > div");
 let playerOne = "X"
 let playerTwo = "O"
 let turncount = 0;
-let cells = document.querySelectorAll(".row > div")
+let gameover = false;
+let wincheck = true;
+
 let possibleWins = [
   [cells[0], cells[1], cells[2]],
   [cells[3], cells[4], cells[5]],
@@ -20,36 +23,50 @@ cells.forEach(function (cell) {
 });
 
 function cellClicked(e) {
-  if (turncount < 9) {
-    if (turncount % 2 === 0) {
+  if (gameover !== true) {
+    let cell = e.target;
+
+  if (cell.textContent !== "") return;
+  if (turncount % 2 === 0) {
       e.target.textContent = playerOne
     } else {
       e.target.textContent = playerTwo;
     }
-    if (cells.textContent !== "")
+    if (turncount < 8) {
       turncount++
-    console.log(turncount)
-    checkForWinner()
+      console.log(turncount)
+      checkForWinner()
+    }
   }
 }
+
 function checkForWinner() {
   for (let i = 0; i < possibleWins.length; i++) {
-  let combo = possibleWins[i];
-  let p1combocounter= 0;
-  let p2combocounter= 0;
-  for (let j = 0; j < combo.length; j++) {
-    if (combo[j] === playerOne) {
-      p1combocounter++;
+    let combo = possibleWins[i];
+    let p1combocounter = 0;
+    let p2combocounter = 0;
+    for (let j = 0; j < combo.length; j++) {
+      if (cells[combo[j]].textContent === playerOne) {
+        p1combocounter++;
+      }
+        if (cells[combo[j]].textContent === playerTwo) {
+          p2combocounter++;
+        }
+      
+      if (p1combocounter === 3) {
+        alert("Player One Wins!")
+      }
+      if (p2combocounter === 3) {
+        alert("Player Two Wins!")
+      }
+
+      if (p1combocounter !== 3) {
+        if (p2combocounter !== 3) {
+          if (turncount < 8) {
+            alert("It's A Tie!")
+          }
+        }
+      }
     }
-    if (combo[j] === playerTwo) {
-      p2combocounter++;
-    }
-  if (cells[combo[j]].textContent == playerOne ) {
-    alert("Player One Wins!")
   }
-}
-if( turncount >8 ){
-  alert("It's A Tie!")
-}
-}
 }
