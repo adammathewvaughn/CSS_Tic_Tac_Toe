@@ -2,7 +2,7 @@ let cells = document.querySelectorAll(".row > div");
 let currentplayer = "X"
 let turncount = 0;
 let gameover = false;
-let wincheck = true;
+
 
 let possibleWins = [
   [0, 1, 2],
@@ -23,52 +23,49 @@ function switchPlayer() {
   };
 }
 
+function tieGame() {
+  alert("It's A Tie!")
+  restartGame();
+}
+
 cells.forEach(function (cell) {
   cell.addEventListener("click", cellClicked);
 });
 
 function cellClicked(e) {
-  if (gameover !== true) {
-    let cell = e.target;
-    console.log("clicked")
-    if (cell.textContent !== "") return;
-    cell.textContent = currentplayer
-  
-    turncount++
-    console.log(turncount)
-    checkForWinner()
-    switchPlayer()
+  turncount++
+  e.target.textContent = currentplayer
+  checkForWinner()
+  console.log(turncount)
+  switchPlayer()
+  if (turncount === 9 && gameover === false) {
+    tieGame();
   }
+  
 }
 
 function checkForWinner() {
   for (let i = 0; i < possibleWins.length; i++) {
     let combo = possibleWins[i];
     let combocounter = 0;
+
     for (let j = 0; j < combo.length; j++) {
       if (cells[combo[j]].textContent === currentplayer) {
         combocounter++;
       }
 
       if (combocounter === 3) {
-        alert(`${currentplayer} Wins!`)
         gameover = true
-        wincheck = false
+        alert(`${currentplayer} Wins!`)
+
         restartGame();
       }
 
-      if (combocounter !== 3) {
-        if (wincheck !== false) {
-          if (turncount === 9 && gameover === false) {
-            alert("It's A Tie!")
-            gameover = true
-            restartGame();
-          }
-          }
-        }
-      }
+
     }
   }
+}
+
 
 
 function restartGame() {
