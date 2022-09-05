@@ -33,7 +33,7 @@ function cellClicked(e) {
     console.log("clicked")
     if (cell.textContent !== "") return;
     cell.textContent = currentplayer
-
+  
     turncount++
     console.log(turncount)
     checkForWinner()
@@ -59,16 +59,17 @@ function checkForWinner() {
 
       if (combocounter !== 3) {
         if (wincheck !== false) {
-          if (turncount > 8) {
+          if (turncount === 9 && gameover === false) {
             alert("It's A Tie!")
             gameover = true
             restartGame();
+          }
           }
         }
       }
     }
   }
-}
+
 
 function restartGame() {
   window.location.reload();
